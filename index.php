@@ -23,11 +23,11 @@ if (isset($_SESSION['EMAIL'])) {
 <body>
 <h1>ようこそ、ログインしてください。</h1>
 <form  action="login.php" method="post">
-    <label for="email">email</label>
-    <input type="email" name="email">
+    <label for="id">id</label>
+    <input type="id" name="id">
     <label for="password">password</label>
     <input type="password" name="password">
-    <button type="submit">Sign In!</button>
+    <button type="submit">Log In!</button>
 </form>
 </body>
 </html>
