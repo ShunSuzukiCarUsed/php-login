@@ -6,7 +6,7 @@ function h($s){
 
 session_start();
 //ログイン済みの場合
-if (isset($_SESSION['EMAIL'])) {
+if (isset($_SESSION['id'])) {
     echo 'ようこそ' .  h($_SESSION['id']) . "さん<br>";
     echo "<a href='/logout.php'>ログアウトはこちら。</a>";
     exit;
