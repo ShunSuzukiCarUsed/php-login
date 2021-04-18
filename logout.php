@@ -1,11 +1,6 @@
 <?php
 session_start();
 $output = '';
-if (isset($_SESSION["id"])) {
-    $output = 'Logoutしました。';
-} else {
-    $output = 'SessionがTimeoutしました。';
-}
 
 //セッション変数のクリア
 $_SESSION = array();
@@ -21,4 +16,16 @@ if (ini_get("session.use_cookies")) {
 //セッションクリア
 @session_destroy();
 
-echo $output;
+?>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content=" 5; url=index.php">
+    <title>Logout</title>
+</head>
+<body>
+<h1>Logoutしました。</h1>
+</body>
+</html>
