@@ -12,5 +12,17 @@ if (($_POST['id'] == CORRECT_ID) && ($_POST['password'] == CORRECT_PS)) {
     echo 'ログインしました';
 } else {
     echo 'メールアドレス又はパスワードが間違っています。';
-    return false;
 }
+?>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content=" 5; url=index.php">
+    <title>Login</title>
+</head>
+<body>
+<h1>Loginしました。</h1>
+</body>
+</html>
