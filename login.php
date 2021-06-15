@@ -16,6 +16,8 @@ if (($_POST['id'] == CORRECT_ID) && ($_POST['password'] == CORRECT_PS)) {
 
 } else {
     echo 'メールアドレス又はパスワードが間違っています。';
+    echo "<a href='index.php'>TOPへ戻る</a>";
+
     exit;
 }
 ?>
