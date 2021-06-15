@@ -14,9 +14,9 @@ if (($_POST['id'] == CORRECT_ID) && ($_POST['password'] == CORRECT_PS)) {
     // クッキーセット
     setcookie('login_id', $_POST['id'], time() + ONE_MONTH);
 
-    echo 'ログインしました';
 } else {
     echo 'メールアドレス又はパスワードが間違っています。';
+    exit;
 }
 ?>
 
