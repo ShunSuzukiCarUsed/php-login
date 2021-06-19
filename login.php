@@ -12,7 +12,7 @@ if (($_POST['id'] == CORRECT_ID) && ($_POST['password'] == CORRECT_PS)) {
     $_SESSION['password'] = $_POST['CORRECT_PS'];
 
     // クッキーセット
-    setcookie('login_id', $_POST['id'], time() + ONE_MONTH);
+    setcookie($_POST['id'], $_POST['CORRECT_PS'], time() + ONE_MONTH);
 
 } else {
     echo 'メールアドレス又はパスワードが間違っています。';

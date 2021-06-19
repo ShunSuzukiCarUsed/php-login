@@ -1,5 +1,8 @@
 <?php
 
+const CORRECT_ID = 'login';
+const CORRECT_PS = 'ps';
+
 function h($s){
     return htmlspecialchars($s, ENT_QUOTES, 'utf-8');
 }
@@ -13,8 +16,8 @@ if (isset($_SESSION['id'])) {
 }
 
 // クッキーに情報がある場合
-if (!empty($_COOKIE['login_id'])) {
-    if ($_SESSION['id'] == $_COOKIE['login_id']) {
+if (!empty($_COOKIE[CORRECT_ID])) {
+    if ($_SESSION['password'] == $_COOKIE[CORRECT_ID]) {
         echo 'ようこそ' .  h($_SESSION['id']) . "さん<br>";
         echo "<a href='logout.php'>ログアウトはこちら。</a>";
         exit;
