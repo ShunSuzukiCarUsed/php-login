@@ -11,8 +11,11 @@ if (($_POST['id'] == CORRECT_ID) && ($_POST['password'] == CORRECT_PS)) {
     $_SESSION['id'] = $_POST['id'];
     $_SESSION['password'] = $_POST['CORRECT_PS'];
 
+    // ハッシュ化
+    $hash_pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+
     // クッキーセット
-    setcookie($_POST['id'], $_POST['CORRECT_PS'], time() + ONE_MONTH);
+    setcookie($_POST['id'], $hash_pass, time() + ONE_MONTH);
 
 } else {
     echo 'メールアドレス又はパスワードが間違っています。';

@@ -17,7 +17,7 @@ if (isset($_SESSION['id'])) {
 
 // クッキーに情報がある場合
 if (!empty($_COOKIE[CORRECT_ID])) {
-    if ($_SESSION['password'] == $_COOKIE[CORRECT_ID]) {
+    if (password_verify($_SESSION['password'], $_COOKIE[CORRECT_ID])) {
         echo 'ようこそ' .  h($_SESSION['id']) . "さん<br>";
         echo "<a href='logout.php'>ログアウトはこちら。</a>";
         exit;
