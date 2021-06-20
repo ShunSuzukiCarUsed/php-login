@@ -9,15 +9,17 @@ function h($s){
 
 session_start();
 //ログイン済みの場合
-if (isset($_SESSION['id'])) {
+if ($_SESSION['login']) {
+    $_SESSION['login'] = false;
     echo 'ようこそ' .  h($_SESSION['id']) . "さん<br>";
     echo "<a href='logout.php'>ログアウトはこちら。</a>";
     exit;
 }
 
-// クッキーに情報がある場合
-if (!empty($_COOKIE[CORRECT_ID])) {
+// セッション・クッキーに情報がある場合
+if ((!empty($_SESSION['password']) && !empty($_COOKIE[CORRECT_ID]))) {
     if (password_verify($_SESSION['password'], $_COOKIE[CORRECT_ID])) {
+        $_SESSION['login'] = false;
         echo 'ようこそ' .  h($_SESSION['id']) . "さん<br>";
         echo "<a href='logout.php'>ログアウトはこちら。</a>";
         exit;
@@ -36,9 +38,11 @@ if (!empty($_COOKIE[CORRECT_ID])) {
 <h1>ようこそ、ログインしてください。</h1>
 <form  action="login.php" method="post">
     <label for="id">id</label>
-    <input type="id" name="id">
+    <input type="id" name="id"><br>
     <label for="password">password</label>
-    <input type="password" name="password">
+    <input type="password" name="password"><br><br>
+    <label for="remember">ログイン情報を保存する</label>
+    <input type="checkbox" name="remember"><br><br>
     <button type="submit">Log In!</button>
 </form>
 </body>
