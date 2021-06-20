@@ -1,7 +1,16 @@
 <?php
+
+const CORRECT_ID = 'login';
+const CORRECT_PS = 'ps';
+
 // セッション削除
 session_start();
+$_SESSION['login'] = false;
 @session_destroy();
+
+// クッキー削除
+setcookie(CORRECT_ID, '');
+
 ?>
 
 <!DOCTYPE html>

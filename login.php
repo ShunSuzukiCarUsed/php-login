@@ -10,6 +10,7 @@ if (($_POST['id'] == CORRECT_ID) && ($_POST['password'] == CORRECT_PS)) {
     session_regenerate_id(true); //session_idを新しく生成し、置き換える
     $_SESSION['id'] = $_POST['id'];
     $_SESSION['password'] = $_POST['password'];
+    $_SESSION['login'] = true;
 
     // ハッシュ化
     $hash_pass = password_hash($_POST['password'], PASSWORD_DEFAULT);

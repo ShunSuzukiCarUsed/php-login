@@ -9,7 +9,7 @@ function h($s){
 
 session_start();
 //ログイン済みの場合
-if ($_SESSION['password']) {
+if ($_SESSION['login']) {
     echo 'ようこそ' .  h($_SESSION['id']) . "さん<br>";
     echo "<a href='logout.php'>ログアウトはこちら。</a>";
     exit;
@@ -17,8 +17,8 @@ if ($_SESSION['password']) {
 
 // クッキーに情報がある場合
 if ((!empty($_COOKIE[CORRECT_ID]))) {
-    if (password_verify($_SESSION['password'], $_COOKIE[CORRECT_ID])) {
-        echo 'ようこそ' .  h($_SESSION['id']) . "さん<br>";
+    if (password_verify(CORRECT_PS, $_COOKIE[CORRECT_ID])) {
+        echo 'ようこそ' .  h(CORRECT_ID) . "さん<br>";
         echo "<a href='logout.php'>ログアウトはこちら。</a>";
         exit;
     }
