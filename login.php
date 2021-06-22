@@ -9,14 +9,26 @@ session_start();
 if (($_POST['id'] == CORRECT_ID) && ($_POST['password'] == CORRECT_PS)) {
     session_regenerate_id(true); //session_idを新しく生成し、置き換える
     $_SESSION['id'] = $_POST['id'];
-    $_SESSION['password'] = $_POST['CORRECT_PS'];
+    $_SESSION['password'] = $_POST['password'];
+    $_SESSION['login'] = true;
 
-    // クッキーセット
-    setcookie('login_id', $_POST['id'], time() + ONE_MONTH);
+    // ハッシュ化
+    $hash_pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    echo 'ログインしました';
+    // チェックしてたらログイン情報をクッキーへセット
+    if (!empty($_POST['remember'])) {
+        setcookie($_POST['id'], $hash_pass, time() + ONE_MONTH);
+    }
+    else {
+        // クッキークリア
+        setcookie($_POST['id'], $hash_pass, time() - 1);
+    }
+
 } else {
     echo 'メールアドレス又はパスワードが間違っています。';
+    echo "<a href='index.php'>TOPへ戻る</a>";
+
+    exit;
 }
 ?>
 

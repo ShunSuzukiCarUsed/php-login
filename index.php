@@ -1,21 +1,24 @@
 <?php
 
+const CORRECT_ID = 'login';
+const CORRECT_PS = 'ps';
+
 function h($s){
     return htmlspecialchars($s, ENT_QUOTES, 'utf-8');
 }
 
 session_start();
 //ログイン済みの場合
-if (isset($_SESSION['id'])) {
+if ($_SESSION['login']) {
     echo 'ようこそ' .  h($_SESSION['id']) . "さん<br>";
     echo "<a href='logout.php'>ログアウトはこちら。</a>";
     exit;
 }
 
 // クッキーに情報がある場合
-if (!empty($_COOKIE['login_id'])) {
-    if ($_SESSION['id'] = $_COOKIE['login_id']) {
-        echo 'ようこそ' .  h($_SESSION['id']) . "さん<br>";
+if ((!empty($_COOKIE[CORRECT_ID]))) {
+    if (password_verify(CORRECT_PS, $_COOKIE[CORRECT_ID])) {
+        echo 'ようこそ' .  h(CORRECT_ID) . "さん<br>";
         echo "<a href='logout.php'>ログアウトはこちら。</a>";
         exit;
     }
@@ -33,9 +36,11 @@ if (!empty($_COOKIE['login_id'])) {
 <h1>ようこそ、ログインしてください。</h1>
 <form  action="login.php" method="post">
     <label for="id">id</label>
-    <input type="id" name="id">
+    <input type="id" name="id"><br>
     <label for="password">password</label>
-    <input type="password" name="password">
+    <input type="password" name="password"><br><br>
+    <label for="remember">ログイン情報を保存する</label>
+    <input type="checkbox" name="remember"><br><br>
     <button type="submit">Log In!</button>
 </form>
 </body>
